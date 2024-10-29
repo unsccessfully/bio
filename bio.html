@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light's Bio Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="blur" id="blur"></div>
+    <div class="container" id="container">
+        <div class="profile">
+            <img src="https://pbs.twimg.com/media/El3dpJBVgAAVzTU.jpg" alt="Profile Picture" id="profile-pic"> <!-- Profile picture -->
+            <h1>Light</h1>
+            <p id="bio">C# dev / computer engineer</p> <!-- Bio initially visible but blurred -->
+        </div>
+    </div>
+
+    <script>
+        // Blurring effect on page load
+        window.onload = function() {
+            const blur = document.getElementById('blur');
+            blur.style.display = 'block'; // Show blur
+        }
+
+        // Reveal bio on blur area click
+        document.getElementById('blur').addEventListener('click', function() {
+            const blur = document.getElementById('blur');
+            const container = document.getElementById('container');
+
+            // Remove blur effect and reveal bio with a smooth transition
+            container.classList.add('show-bio'); // Add class to trigger animation
+            
+            // Fade out the blur effect
+            blur.style.opacity = '1'; // Ensure it's fully opaque before transition
+            setTimeout(() => {
+                blur.style.transition = 'opacity 0.5s ease'; // Set transition for blur
+                blur.style.opacity = '0'; // Start fade out
+            }, 10); // Small timeout to ensure the previous style is applied
+        });
+    </script>
+</body>
+</html>
